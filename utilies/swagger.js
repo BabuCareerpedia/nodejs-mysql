@@ -5,17 +5,17 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'CAREERPEDIA API',
+      title: 'Careerbridge-API',
       version: '1.0.0',
-      description: "careerpedia-platform API documentation",
+      description: "Careerbridge project API documentation",
     },
     servers: [
       {
-        url: "http://localhost:5000",
+        url: "http://localhost:3740",
       },
     ],
   },
-  apis: ['../routes/*.js'], // Adjusted the path pattern for JavaScript files
+  apis: ['../routes/*.js']
 };
 
 // Generate the Swagger specification
