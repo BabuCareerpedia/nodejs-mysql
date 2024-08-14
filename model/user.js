@@ -1,20 +1,30 @@
 const pool = require("../DB/connection");
 
-const createUser = async (name, email) => {
+const createUser = async (name, email,college,city) => {
   try {
-    const query = "INSERT INTO users (name, email) VALUES (?, ?)";
-    console.log("first");
-    const result = await pool.query(query, [name, email]);
-    return { id: result.insertId, name, email };
+    console.log("PPP")
+    const query = "INSERT INTO users (name, email, college, city) VALUES (?, ?,?,?)";
+    const result = await pool.query(query, [name, email,college,city]);
+    return { id: result.insertId, name, email,college,city };
   } catch (err) {
     throw err;
   }
 };
 
-const checkEmail = async (email) => {
+const checkEmailExist = async (email) => {
   try {
     const query = "SELECT * FROM users where email = email";
     const result = await pool.query(query, [email]);
+    return result;
+  } catch (err) {
+    throw err;
+  }
+};
+
+const checkUserIdExist = async (id) => {
+  try {
+    const query = "SELECT * FROM users where id = ?";
+    const result = await pool.query(query, [id]);
     return result;
   } catch (err) {
     throw err;
@@ -31,8 +41,22 @@ const getUserDetails = async () => {
   }
 };
 
+const updateUser = async (id, name, email, college, city) => {
+  try {
+    const query = "UPDATE users SET name = ?, email = ?, college = ?, city = ? WHERE id = ?";
+    const result = await pool.query(query, [name, email, college, city, id]);
+    return { affectedRows: result.affectedRows, id, name, email, college, city };
+  } catch (err) {
+    throw err;
+  }
+};
+
+
 module.exports = {
   createUser,
   getUserDetails,
-  checkEmail,
+  checkEmailExist,
+  updateUser,
+  checkUserIdExist
+  
 };
