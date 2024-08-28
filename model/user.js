@@ -11,10 +11,15 @@ const createUser = async (name, email,college,city) => {
   }
 };
 
+
+
+
 const checkEmailExist = async (email) => {
   try {
     const query = "SELECT * FROM users where email = email";
+    console.log(query)
     const result = await pool.query(query, [email]);
+    console.log(result)
     return result;
   } catch (err) {
     throw err;
@@ -23,6 +28,7 @@ const checkEmailExist = async (email) => {
 
 const checkUserIdExist = async (id) => {
   try {
+    console.log(id)
     const query = "SELECT * FROM users where id = ?";
     const result = await pool.query(query, [id]);
     return result;
@@ -47,9 +53,11 @@ const updateUser = async (id, name, email, college, city) => {
     const result = await pool.query(query, [name, email, college, city, id]);
     return { affectedRows: result.affectedRows, id, name, email, college, city };
   } catch (err) {
+    console.log(err);
     throw err;
   }
 };
+
 
 
 module.exports = {

@@ -5,9 +5,6 @@ const createUser = async (req, res) => {
   try {
     const { name, email, college, city } = req.body;
     const user = await userService.createUser(name, email, college, city);  
-    if (user.message) {
-      return res.status(400).json({ message: user.message });
-    }
     const token = await createToken(user.id);
     res.status(200).json({ message: "User added successfully", token });
   } catch (err) {
@@ -17,15 +14,18 @@ const createUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    const user = req.body;
-    const id = req.param
-    const result = await userService.updateUser(user,id);
+    const { name, email, college, city} = req.body;
+    const id = req.params
+    console.log(id)
+    const result = await userService.updateUser(id,name, email, college, city);
     const token = await createToken(user.id);
     res.status(200).json({ message: "user updated successfully",token });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
 };
+
+
 
 module.exports = {
   createUser,updateUser

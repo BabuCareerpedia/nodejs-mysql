@@ -6,4 +6,6 @@ router.post("/users", createUser);
 // router.get('./')
 router.patch("/update/:id",updateUser)
 
+// router.post("/create",studentcreate)
+
 module.exports = router;
