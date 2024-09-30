@@ -1,10 +1,11 @@
 const pool = require("../DB/connection");
 
-const createUser = async (name, email,college,city) => {
+const createUser = async (name,email,college,city) => {
   try {
-    console.log("PPP")
+    console.log("bhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
     const query = "INSERT INTO users (name, email, college, city) VALUES (?, ?,?,?)";
     const result = await pool.query(query, [name, email,college,city]);
+    console.log(result)
     return { id: result.insertId, name, email,college,city };
   } catch (err) {
     throw err;

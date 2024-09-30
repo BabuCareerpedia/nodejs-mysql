@@ -5,10 +5,10 @@ const createUser = async (name, email, college, city) => {
     const isEmailExists = await User.checkEmailExist(email);
     console.log("v", email);
     
-    if (isEmailExists) {
-      console.log("Email already registered");
-      return { message: "Email already registered" }; // Return here if the email is already registered
-    }
+    // if (isEmailExists) {
+    //   console.log("Email already registered");
+    //   return { message: "Email already registered" }; // Return here if the email is already registered
+    // }
 
     const newUser = await User.createUser(name, email, college, city); // This will run only if email is not registered
     return newUser;
